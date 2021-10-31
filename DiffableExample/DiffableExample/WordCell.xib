@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="KGk-i7-Jjw" customClass="WordCell" customModule="DiffableExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jga-Ft-5Fg">
+                        <rect key="frame" x="15" y="12" width="257" height="19.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.092111922800540924" green="0.30747511982917786" blue="0.48103338479995728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoQ-uc-d74">
+                        <rect key="frame" x="15" y="36.5" width="290" height="37.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.41176470590000003" green="0.43529411759999997" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56d-DB-3zo">
+                        <rect key="frame" x="277" y="10" width="33" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="Edz-NM-RSj"/>
+                            <constraint firstAttribute="width" secondItem="56d-DB-3zo" secondAttribute="height" multiplier="1:1" id="jLx-46-ViJ"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
+                        <connections>
+                            <action selector="deleteButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YLd-On-7UF"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="WoQ-uc-d74" secondAttribute="trailing" constant="15" id="1ww-ls-N32"/>
+                    <constraint firstAttribute="bottom" secondItem="WoQ-uc-d74" secondAttribute="bottom" constant="5" id="3Dl-pw-kL1"/>
+                    <constraint firstItem="Jga-Ft-5Fg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="A26-j8-Cqs"/>
+                    <constraint firstItem="56d-DB-3zo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MR9-Vf-37R"/>
+                    <constraint firstItem="WoQ-uc-d74" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="QTc-QZ-ofO"/>
+                    <constraint firstAttribute="trailing" secondItem="56d-DB-3zo" secondAttribute="trailing" constant="10" id="bhJ-rX-VTd"/>
+                    <constraint firstItem="56d-DB-3zo" firstAttribute="leading" secondItem="Jga-Ft-5Fg" secondAttribute="trailing" constant="5" id="gBh-nd-zRv"/>
+                    <constraint firstItem="WoQ-uc-d74" firstAttribute="top" secondItem="Jga-Ft-5Fg" secondAttribute="bottom" constant="5" id="mMV-EG-SvK"/>
+                    <constraint firstItem="Jga-Ft-5Fg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="mzs-Ov-LNK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deleteButton" destination="56d-DB-3zo" id="hMr-J6-yyE"/>
+                <outlet property="subTitleLabel" destination="WoQ-uc-d74" id="OcU-KH-KWc"/>
+                <outlet property="titleLabel" destination="Jga-Ft-5Fg" id="T3x-1J-eTf"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="108.14732142857143"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
