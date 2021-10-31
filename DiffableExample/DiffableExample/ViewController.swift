@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             let data = try Data(contentsOf: url)
             let words = try JSONDecoder().decode([WordItem].self, from: data)
             print("words: \(words.count)")
-            applyDataSource(words: words.reversed())
+            applyDataSource(words: words.reversed().suffix(15))
         } catch {
             print("error: \(error)")
         }
@@ -60,6 +60,9 @@ class ViewController: UIViewController {
             -> WordCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? WordCell
             cell?.item = item
+            cell?.deleteItemClosure = { [weak self] item in
+                self?.deleteItemClick(item: item)
+            }
             return cell
         }
         source.defaultRowAnimation = .fade
@@ -70,9 +73,36 @@ class ViewController: UIViewController {
         let snapshot = NSDiffableDataSourceSnapshot<SectionType, WordItem>()
         return snapshot
     }()
-
+    
+    
+    @IBAction func deleteRandomItems(_ sender: UIBarButtonItem) {
+        var snapshot = dataSource.snapshot()
+        
+        if snapshot.itemIdentifiers.count > 3 {
+            snapshot.deleteItems([snapshot.itemIdentifiers[0], snapshot.itemIdentifiers[2]])
+        } else if snapshot.itemIdentifiers.count > 2 {
+            let randomItems: [WordItem] = snapshot.itemIdentifiers.suffix(2)
+            snapshot.deleteItems(randomItems)
+        } else {
+            snapshot.deleteAllItems()
+        }
+        dataSource.apply(snapshot, animatingDifferences: true) {
+            print("deleteItems")
+        }
+    }
 }
 
+extension ViewController {
+    
+    func deleteItemClick(item: WordItem) {
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteItems([item])
+        dataSource.apply(snapshot, animatingDifferences: true, completion: {
+            print("Delete: \(item.identifier)")
+        })
+    }
+    
+}
 
 extension ViewController: UITableViewDelegate {
     
@@ -88,7 +118,7 @@ extension ViewController: UITableViewDelegate {
         snapshot.reconfigureItems([selectedItem])
         
         dataSource.apply(snapshot, animatingDifferences: true, completion: {
-            print("Done: \(selectedItem)")
+            print("Done: \(selectedItem.riddle)")
         })
         
     }

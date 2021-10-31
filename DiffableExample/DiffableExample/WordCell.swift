@@ -13,6 +13,8 @@ class WordCell: UITableViewCell {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     
+    var deleteItemClosure: ((WordItem) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -37,10 +39,9 @@ class WordCell: UITableViewCell {
         }
     }
     
-    
     @IBAction func deleteButtonAction(_ sender: UIButton) {
-        
-        
+        guard let item = item else { return }
+        deleteItemClosure?(item)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

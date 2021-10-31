@@ -16,7 +16,7 @@ class WordItem: Codable {
     var riddle: String
     var answer: String
     
-    private var identifier: UUID { UUID() }
+    var identifier: UUID { UUID() }
 
 }
 
