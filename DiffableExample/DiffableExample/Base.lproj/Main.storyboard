@@ -19,7 +19,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Example" id="GfM-pk-jIX">
-                        <barButtonItem key="rightBarButtonItem" title="Delete" id="mc7-89-LPd">
+                        <barButtonItem key="rightBarButtonItem" title="Delete 2 items" id="mc7-89-LPd">
                             <connections>
                                 <action selector="deleteRandomItems:" destination="BYZ-38-t0r" id="YQP-g2-OZL"/>
                             </connections>

@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             let data = try Data(contentsOf: url)
             let words = try JSONDecoder().decode([WordItem].self, from: data)
             print("words: \(words.count)")
-            applyDataSource(words: words.reversed().suffix(15))
+            applyDataSource(words: words.reversed().suffix(25))
         } catch {
             print("error: \(error)")
         }
@@ -63,6 +63,7 @@ class ViewController: UIViewController {
             cell?.deleteItemClosure = { [weak self] item in
                 self?.deleteItemClick(item: item)
             }
+            print("dequeue: \(indexPath)")
             return cell
         }
         source.defaultRowAnimation = .fade
@@ -116,10 +117,13 @@ extension ViewController: UITableViewDelegate {
         selectedItem.riddle = selectedItem.riddle + " ★"
         
         snapshot.reconfigureItems([selectedItem])
-        
         dataSource.apply(snapshot, animatingDifferences: true, completion: {
             print("Done: \(selectedItem.riddle)")
         })
+        
+//        dataSource.applySnapshotUsingReloadData(snapshot) {
+//            print("Reload All.")
+//        }
         
     }
 }
