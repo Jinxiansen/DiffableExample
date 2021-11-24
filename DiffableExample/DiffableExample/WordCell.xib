@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoQ-uc-d74">
-                        <rect key="frame" x="15" y="36.5" width="290" height="37.5"/>
+                        <rect key="frame" x="15" y="36.5" width="262" height="37.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.41176470590000003" green="0.43529411759999997" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,9 +42,9 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="WoQ-uc-d74" secondAttribute="trailing" constant="15" id="1ww-ls-N32"/>
                     <constraint firstAttribute="bottom" secondItem="WoQ-uc-d74" secondAttribute="bottom" constant="5" id="3Dl-pw-kL1"/>
                     <constraint firstItem="Jga-Ft-5Fg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="A26-j8-Cqs"/>
+                    <constraint firstItem="56d-DB-3zo" firstAttribute="leading" secondItem="WoQ-uc-d74" secondAttribute="trailing" id="GzT-Cl-Bwg"/>
                     <constraint firstItem="56d-DB-3zo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MR9-Vf-37R"/>
                     <constraint firstItem="WoQ-uc-d74" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="QTc-QZ-ofO"/>
                     <constraint firstAttribute="trailing" secondItem="56d-DB-3zo" secondAttribute="trailing" constant="10" id="bhJ-rX-VTd"/>

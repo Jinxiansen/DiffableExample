@@ -20,31 +20,20 @@ class ViewController: UIViewController {
     }
     
     func loadLocalData() {
-        
         guard let path = Bundle.main.path(forResource: "xiehouyu", ofType: "json") else {
-            print("file don't exist.")
+            print("file doesn't exist.")
             return
         }
-        
         let url = URL(fileURLWithPath: path)
         do {
             let data = try Data(contentsOf: url)
             let words = try JSONDecoder().decode([WordItem].self, from: data)
-            print("words: \(words.count)")
-            applyDataSource(words: words.reversed().suffix(25))
+            print("totalCount: \(words.count)")
+            let result = Array(words.reversed().suffix(25))
+            applyDataSource(words: result)
         } catch {
             print("error: \(error)")
         }
-    }
-    
-    func applyDataSource(words: [WordItem]) {
-        
-        var snapshot = dataSource.snapshot()
-        snapshot.appendSections([.word])
-        snapshot.appendItems(words, toSection: .word)
-        
-        dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
-        
     }
     
     lazy var tableView: UITableView = {
@@ -63,7 +52,7 @@ class ViewController: UIViewController {
             cell?.deleteItemClosure = { [weak self] item in
                 self?.deleteItemClick(item: item)
             }
-            print("dequeue: \(indexPath)")
+            print("CellForRow: \(indexPath)")
             return cell
         }
         source.defaultRowAnimation = .fade
@@ -76,14 +65,26 @@ class ViewController: UIViewController {
     }()
     
     
+    func applyDataSource(words: [WordItem]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.appendSections([.word])
+        snapshot.appendItems(words, toSection: .word)
+        dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+        
+//        snapshot.deleteItems(<#T##identifiers: [WordItem]##[WordItem]#>)
+//        snapshot.deleteAllItems()
+//        snapshot.numberOfItems
+//        snapshot.moveItem(<#T##identifier: WordItem##WordItem#>, afterItem: <#T##WordItem#>)
+//        snapshot.moveItem(<#T##identifier: WordItem##WordItem#>, beforeItem: <#T##WordItem#>)
+//        snapshot.insertItems(<#T##identifiers: [WordItem]##[WordItem]#>, afterItem: <#T##WordItem#>)
+        
+    }
+    
     @IBAction func deleteRandomItems(_ sender: UIBarButtonItem) {
         var snapshot = dataSource.snapshot()
         
         if snapshot.itemIdentifiers.count > 3 {
             snapshot.deleteItems([snapshot.itemIdentifiers[0], snapshot.itemIdentifiers[2]])
-        } else if snapshot.itemIdentifiers.count > 2 {
-            let randomItems: [WordItem] = snapshot.itemIdentifiers.suffix(2)
-            snapshot.deleteItems(randomItems)
         } else {
             snapshot.deleteAllItems()
         }
@@ -93,32 +94,32 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: Action
 extension ViewController {
-    
     func deleteItemClick(item: WordItem) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([item])
         dataSource.apply(snapshot, animatingDifferences: true, completion: {
-            print("Delete: \(item.identifier)")
+            print("Deleted: \(item.identifier)")
         })
     }
     
 }
 
+// MARK: UITableViewDelegate
 extension ViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath) else {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         var snapshot = dataSource.snapshot()
-        selectedItem.riddle = selectedItem.riddle + " ★"
+        selectedItem.riddle += " ★"
+        selectedItem.answer += selectedItem.answer
         
         snapshot.reconfigureItems([selectedItem])
         dataSource.apply(snapshot, animatingDifferences: true, completion: {
-            print("Done: \(selectedItem.riddle)")
+            print("Apply completion.")
         })
         
 //        dataSource.applySnapshotUsingReloadData(snapshot) {
