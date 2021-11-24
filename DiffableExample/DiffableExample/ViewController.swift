@@ -29,8 +29,8 @@ class ViewController: UIViewController {
             let data = try Data(contentsOf: url)
             let words = try JSONDecoder().decode([WordItem].self, from: data)
             print("totalCount: \(words.count)")
-            let result = Array(words.reversed().suffix(25))
-            applyDataSource(words: result)
+//            let result = Array(words.reversed().suffix(25))
+            applyDataSource(words: words.reversed())
         } catch {
             print("error: \(error)")
         }
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
             cell?.deleteItemClosure = { [weak self] item in
                 self?.deleteItemClick(item: item)
             }
-            print("CellForRow: \(indexPath)")
+            print("CellForRow: \(indexPath), identifier: \(item.identifier)")
             return cell
         }
         source.defaultRowAnimation = .fade

@@ -17,6 +17,7 @@ class WordItem: Codable {
     var answer: String
     
     var identifier: UUID { UUID() }
+//    var identifier: TimeInterval { Date().timeIntervalSince1970 }
 
 }
 
